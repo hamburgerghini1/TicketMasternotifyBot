@@ -23,6 +23,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt  # Install dependencies from requirements.txt
 
+      - name: List files in directory (Debugging step)
+        run: |
+          ls -al
+
+      - name: Print Python version (Debugging step)
+        run: |
+          python --version
+
       - name: Run script
+        env:
+          TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API_KEY }}
+          MAILGUN_USERNAME: ${{ secrets.MAILGUN_USERNAME }}
+          MAILGUN_PASSWORD: ${{ secrets.MAILGUN_PASSWORD }}
         run: |
           python main.py  # Replace with the path to your script
